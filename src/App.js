@@ -7,6 +7,7 @@ class App extends Component {
     return (
       <div>
         <h1>MUSIC SUGGESTIONS</h1>
+        
         <Dashboard/>
       </div>
     );

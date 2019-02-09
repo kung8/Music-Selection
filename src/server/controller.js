@@ -1,5 +1,6 @@
 const cards = [
     {
+        id: 0,
         artist:"Ed Sheeran",
         song:"Perfect",
         album:"Divide",
@@ -7,11 +8,11 @@ const cards = [
     }
 ];
 
-let id = 0;
+let id = 1;
 
 module.exports = {
     showMusic: (req,res) => { 
-        res.status(200).send()
+        res.status(200).send(cards)
     }, 
 
     addMusic: (req, res) => {
@@ -27,13 +28,22 @@ module.exports = {
         res.status(200).send(cards)
     },
      
-    // deleteMusic: {
+    deleteMusic: (req, res) => {
+        // console.log("you are ready to delete");
+        const { id } = req.params;
+        const removedCard = cards.map(card =>{card.id==id});
+        cards.split(index,1);
+        res.status(200).send(cards)
+    },
 
-    // }, 
+ 
 
-    // editMusic: {
+    editMusic: (req, res) => {
+        const {artist, song, album, genre} = req.body;
+        const { id } = req.params;
 
-    // }
+        res.status(200).send(cards)
+    }
 
 
 }

@@ -14,10 +14,10 @@ app.get('/api/music', ctrl.showMusic);
 app.post('/api/music', ctrl.addMusic);
 
 // //delete method
-// app.delete('/api/music/:id', ctrl.deleteMusic);
+app.delete('/api/music/:id', ctrl.deleteMusic);
 
 // //put/update method
-// app.put('/api/music/:id', ctrl.editMusic);
+app.put('/api/music/:id', ctrl.editMusic);
 
 const port = 4000;
 app.listen(port, ()=>console.log(`Congratulations, I am running on ${port}`));
