@@ -2,23 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-class MusicCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isDialogue:false
-    }
+export default function MusicCard () {
 
- }
-
-  render() {
     return (
       <div>
-       
+          <h1>MUSIC SUGGESTIONS</h1>
+          
       </div>
     );
   }
 
-}
 
-export default MusicCard;
