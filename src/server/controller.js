@@ -1,47 +1,56 @@
 const cards = [
     {
         id: 0,
-        artist:"Ed Sheeran",
-        song:"Perfect",
-        album:"Divide",
-        genre:"pop"
+        artist: "Ed Sheeran",
+        song: "Perfect",
+        album: "Divide",
+        genre: "pop"
     }
 ];
 
 let id = 1;
 
 module.exports = {
-    showMusic: (req,res) => { 
+    showMusic: (req, res) => {
         res.status(200).send(cards)
-    }, 
+    },
 
     addMusic: (req, res) => {
-        const {artist,song,album,genre} = req.body;
+        const { artist, song, album, genre } = req.body;
         cards.push({
             id,
             artist,
             song,
-            album, 
+            album,
             genre
         });
         id++;
         res.status(200).send(cards)
     },
-     
+
     deleteMusic: (req, res) => {
         // console.log("you are ready to delete");
         const { id } = req.params;
-        const removedCard = cards.map(card =>{card.id==id});
-        cards.split(index,1);
+        let indexCard = cards.findIndex(card => { card.id == id });
+        cards.splice(indexCard, 1);
         res.status(200).send(cards)
     },
 
- 
+    
 
     editMusic: (req, res) => {
-        const {artist, song, album, genre} = req.body;
+        const { artist, song, album, genre } = req.body;
         const { id } = req.params;
-
+        let indexCard = cards.findIndex(card => { card.id == id });
+        let found = cards[indexCard];
+        found = {
+            id: found.id,
+            artist: artist || found.artist,
+            song: song || found.song,
+            album: album || found.album,
+            genre: genre || found.genre,
+        }
+        cards.splice(indexCard, 1, found);
         res.status(200).send(cards)
     }
 

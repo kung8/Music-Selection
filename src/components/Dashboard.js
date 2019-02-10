@@ -3,7 +3,6 @@ import MusicLibrary from './MusicLibrary';
 import MusicCard from './MusicCard';
 import axios from 'axios';
 
-
 class Dashboard extends Component {
     constructor() {
         super();
@@ -66,48 +65,39 @@ class Dashboard extends Component {
         })
     };
 
-    // deleteCard =(id) => {
-    //     axios.delete(`/api/music/:${id}`).then(res => {
-    //         this.setState({
-    //             cards: res.data
-    //         })
-    //     })
-    // }
+    deleteCard = (id) => {
+        axios.delete(`/api/music/${id}`).then(res => {
+            this.setState({
+                cards: res.data
+            })
+        })
+    }
 
-    // handleEdit = (artist, song, album, genre ) => {
-    //     this.setState ({
-    //         artist,
-    //         song,
-    //         album, 
-    //         genre
-    //     })
-    // }
+    fixCard = (id)=> {
+        const {artist, song, album, genre}=this.state;
+        axios.put(`/api/music/${id}`,{artist, song, album, genre}).then(res => {
+            this.setState({
+                cards: res.data,
+                artist: "",
+                song: "",
+                album: "",
+                genre: ""
 
-    // editCard = (id) => {
-    //     const { artist, song, album, genre } = this.state;
-    //     axios.put(`/api/music/:${id}`, { artist, song, album, genre }).then(res => {
-    //         this.setState({
-    //             cards: res.data,
-    //             artist: "",
-    //             song: "",
-    //             album: "",
-    //             genre: "",
-    //         })
-    //     })
-    // }
+            })
+        })
+    }
 
     render() {
         const { cards, artist, song, album, genre } = this.state;
-        // console.log(2222,this.state.cards);
         const library = cards.map((card) => {
-            console.log(card);
             return (
                 <MusicLibrary
                     key={card.id}
                     card={card}
+                    deleteCard={this.deleteCard}
+                    fixCard={this.fixCard}
                 />
-                //  <MusicCard card={card} key={card.id}/>
-                 )
+            )
         });
 
 
@@ -120,14 +110,12 @@ class Dashboard extends Component {
                 <button onClick={() => this.addMusic(artist, song, album, genre)}>ADD AMAZING MUSIC ONLY!</button>
 
                 <div>{library}</div>
-                <MusicCard 
-                    // deleteCard={this.deleteCard} editCard={this.editCard}
-                    // handleEdit={this.handleEdit}
-                    // card={this.cards}
-                />
+
             </div>
         );
     }
 }
 
 export default Dashboard;
+
+
