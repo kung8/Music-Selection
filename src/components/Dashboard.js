@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MusicLibrary from './MusicLibrary';
-import MusicCard from './MusicCard';
 import axios from 'axios';
 
 class Dashboard extends Component {
@@ -113,6 +112,7 @@ class Dashboard extends Component {
 
         return (
             <div>
+                <br/>
                 <input placeholder="Artist" value={this.state.artist} onChange={e => this.addArtistName(e.target.value)} />
                 <input placeholder="Song" value={this.state.song} onChange={e => this.addSongName(e.target.value)} />
                 <input placeholder="Album" value={this.state.album} onChange={e => this.addAlbumName(e.target.value)} />

@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
 
+export default function MusicCard (props) {
 
-export default function MusicCard () {
 
     return (
       <div>
-          <h1>MUSIC SUGGESTIONS</h1>
-          
+          <h1> {`Welcome ${props.name} to myTunes!`} </h1>          
       </div>
     );
   }

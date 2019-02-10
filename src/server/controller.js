@@ -31,7 +31,7 @@ module.exports = {
     deleteMusic: (req, res) => {
         // console.log("you are ready to delete");
         const { id } = req.params;
-        let indexCard = cards.findIndex(card => { card.id == id });
+        let indexCard = cards.findIndex(card => { return card.id == id });
         cards.splice(indexCard, 1);
         res.status(200).send(cards)
     },
@@ -41,7 +41,13 @@ module.exports = {
     editMusic: (req, res) => {
         const { artist, song, album, genre } = req.body;
         const { id } = req.params;
-        let indexCard = cards.findIndex(card => { card.id == id });
+        // console.log(1111, id)
+        let indexCard = cards.findIndex(card => { return card.id == id });
+    
+        // cards[indexCard].artist = artist;
+        // cards[indexCard].song = song;
+        // cards[indexCard].album = album;
+        // cards[indexCard].genre = genre;
         let found = cards[indexCard];
         found = {
             id: found.id,
