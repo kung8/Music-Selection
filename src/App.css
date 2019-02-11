@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    padding-block-end: 0;
+}
+body {
+    background:lightblue;
+    width:100vw;
+    height:1200px;
+    position:relative;
+}
+
+.heading-holder {
+    border: solid black 2px; 
+    display:flex;
+    margin: 5px auto;
+    position:relative;
+    flex-direction:row;
+    align-items: center; 
+    padding:5px;
+    background:black;
+    color:white;
+    
+}
+
+.heading {
+    text-align:center;
+    position: relative;
+    margin: 0 auto;
+    font-size:50px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+}
+
+.nameholder {
+    text-align: center;
+}
+
+span {
+    display: flex;
+    flex-direction: row;
+    background:green;
+    position:relative;
+    padding:5px;
+    justify-content: space-evenly
+    
+}
+
+.card {
+    background:grey;
+    width:25%;
+
+}
+
+.card-flow {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+input {
+    width:
+}

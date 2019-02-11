@@ -1,49 +1,59 @@
 import React, { Component } from 'react';
 import Dashboard from './components/Dashboard';
 import MusicCard from './components/MusicCard';
+import './App.css';
 
 export default class App extends Component {
-  constructor () {
+  constructor() {
     super()
 
     this.state = {
-      name:''
+      name: ''
     };
-    
+
   }
 
-  handleName (value) {
+  handleName(value) {
     this.setState({
-      name:value
+      name: value
     });
   };
 
   handleAlert = () => {
     // console.log("This works!")
-    alert (`Welcome ${this.state.name}!`);
-    this.setState ({
-      name:""
-    })
+    alert(`Welcome ${this.state.name}!`);
+    // let setName = this.state.name;
   };
-  
+
 
 
   render() {
     return (
-      <div>
-        <MusicCard 
-        name={this.state.name}
-        />
-        <input 
-          placeholder="Name" 
-          onChange={(e)=>{this.handleName(e.target.value)}} 
-          type="text"
-          value={this.state.name}
+      <body>
+        <nav>
+          <MusicCard
+            name={this.state.name}
           />
-        <button onClick={this.handleAlert}>Submit Name</button>
+        </nav>
+        
         <br/>
-        <Dashboard/>
-      </div>
+        
+        <div class="nameholder">
+          <input
+            placeholder="Name"
+            onChange={(e) => { this.handleName(e.target.value) }}
+            type="text"
+            value={this.state.name}
+          />
+          <button onClick={this.handleAlert}>Submit Name</button>
+        </div>
+        
+        <br/>
+       
+        <div class="music-library">
+          <Dashboard />
+        </div>
+      </body>
     );
   }
 }

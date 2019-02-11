@@ -11,7 +11,8 @@ class Dashboard extends Component {
             artist: "",
             song: "",
             album: "",
-            genre: ""
+            genre: "",
+            editing: false
         };
 
         this.addMusic = this.addMusic.bind(this);
@@ -81,6 +82,10 @@ class Dashboard extends Component {
         });
     };
 
+    handleButton= (childstate) => {
+        if(childstate==true){}
+    }
+
     fixCard = (id)=> {
         const {artist, song, album, genre}=this.state;
         axios.put(`/api/music/${id}`,{artist, song, album, genre}).then(res => {
@@ -95,7 +100,14 @@ class Dashboard extends Component {
         });
     };
 
+    toggleEditState =() => {
+        this.setState ({
+            editing: !this.state.editing
+        })
+    }
+
     render() {
+        console.log(this.state)
         const { cards, artist, song, album, genre } = this.state;
         const library = cards.map((card) => {
             return (
@@ -105,23 +117,30 @@ class Dashboard extends Component {
                     deleteCard={this.deleteCard}
                     fixCard={this.fixCard}
                     handleEdit={this.handleEdit}
+                    handlebutton={this.handleButton}
+                    toggleEditState={this.toggleEditState}
                 />
             );
         });
 
 
         return (
-            <div>
+            
+                <div class="input-holder">
+                <span>
+                    <br/>
+                    <input placeholder="Artist" value={this.state.artist} onChange={e => this.addArtistName(e.target.value)} />
+                    <input placeholder="Song" value={this.state.song} onChange={e => this.addSongName(e.target.value)} />
+                    <input placeholder="Album" value={this.state.album} onChange={e => this.addAlbumName(e.target.value)} />
+                    <input placeholder="Genre" value={this.state.genre} onChange={e => this.addGenreName(e.target.value)} />
+                    <button disabled={this.state.editing} onClick={() => this.addMusic(artist, song, album, genre)}>ADD AMAZING MUSIC ONLY!</button>
+                </span>
                 <br/>
-                <input placeholder="Artist" value={this.state.artist} onChange={e => this.addArtistName(e.target.value)} />
-                <input placeholder="Song" value={this.state.song} onChange={e => this.addSongName(e.target.value)} />
-                <input placeholder="Album" value={this.state.album} onChange={e => this.addAlbumName(e.target.value)} />
-                <input placeholder="Genre" value={this.state.genre} onChange={e => this.addGenreName(e.target.value)} />
-                <button onClick={() => this.addMusic(artist, song, album, genre)}>ADD AMAZING MUSIC ONLY!</button>
-                {/* <button onClick={()=>this.editMusic(artist,song,album,genre)}>Update</button> */}
-                <div>{library}</div>
-
-            </div>
+                <div class="card-flow">
+                    {library}
+                </div>
+                </div>
+            
         );
     };
 }
