@@ -12,7 +12,14 @@ let id = 1;
 
 module.exports = {
     showMusic: (req, res) => {
-        res.status(200).send(cards)
+        const {artist} = req.query;
+        if(artist){
+            const searchedArtist = cards.filter(card =>
+                card.artist.includes(artist));
+                res.status(200).send(searchedArtist)
+            
+        } else {
+            res.status(200).send(cards)}
     },
 
     addMusic: (req, res) => {

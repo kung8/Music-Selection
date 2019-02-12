@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MusicLibrary from './MusicLibrary';
 import axios from 'axios';
+import Search from './search'
+
 
 class Dashboard extends Component {
     constructor() {
@@ -12,11 +14,19 @@ class Dashboard extends Component {
             song: "",
             album: "",
             genre: "",
-            editing: false
+            editing: false,
+            search:""
         };
 
+        this.handleSearch = this.handleSearch.bind(this);
         this.addMusic = this.addMusic.bind(this);
     };
+
+    handleSearch (value) {
+        this.setState({
+            search:value
+        })
+    }
 
     componentDidMount() {
         axios.get('/api/music').then(res => {
@@ -107,9 +117,8 @@ class Dashboard extends Component {
     }
 
     render() {
-        console.log(this.state)
         const { cards, artist, song, album, genre } = this.state;
-        const library = cards.map((card) => {
+        const library = cards.filter(card=>card.artist.includes(this.state.search)).map((card) => {
             return (
                 <MusicLibrary
                     key={card.id}
@@ -135,7 +144,13 @@ class Dashboard extends Component {
                     <input placeholder="Genre" value={this.state.genre} onChange={e => this.addGenreName(e.target.value)} />
                     <button disabled={this.state.editing} onClick={() => this.addMusic(artist, song, album, genre)}>ADD AMAZING MUSIC ONLY!</button>
                 </span>
+
                 <br/>
+
+                    <Search handleSearch={this.handleSearch}/>
+
+                <br/>
+
                 <div class="card-flow">
                     {library}
                 </div>

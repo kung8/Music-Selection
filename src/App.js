@@ -3,6 +3,7 @@ import Dashboard from './components/Dashboard';
 import MusicCard from './components/MusicCard';
 import './App.css';
 
+
 export default class App extends Component {
   constructor() {
     super()
@@ -47,10 +48,11 @@ export default class App extends Component {
           />
           <button onClick={this.handleAlert}>Submit Name</button>
         </div>
-        
+
         <br/>
-       
+      
         <div class="music-library">
+         
           <Dashboard />
         </div>
       </body>
